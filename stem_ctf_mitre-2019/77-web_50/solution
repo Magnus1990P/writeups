@@ -1,0 +1,7 @@
+Accessing the site gave Certificate error request.
+Granting a permission did nothing as the page eventually reloaded itself.
+Checking the certificate gave the "Certificate Subject Alt Name"
+	"DNS Name: 138.247.13.115.xip.io"
+Trying the dns name instead also gave nothing, but a unable to connect error
+Putting it in HTTPS, as it has a certificate grants us the flag
+	"MCA{shuHeimoowaiF5a}"
