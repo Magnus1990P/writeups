@@ -114,7 +114,7 @@ hString = hex( gmpy2.iroot(ct, e)[0] )
 The high pitched audio sounded like morse code.
 Lowering the sampling rate in Audacity, basically extenTranslating the Audio morse code signal yields the following morse code string, `..-. .. ... -.- . -.- .- -.- . .-. `, which translates into `FISKEKAKER`
 
-![alt text](https://github.com/Kommune-CSIRT-org/CTF-writeups/blob/main/2021-kins-ctf/E67D77A0D600C8392BEE8AFF2829E2F373BF77FDFB04FECEB727A8CA58578A6B.png?raw=true)
+![alt text](./static/E67D77A0D600C8392BEE8AFF2829E2F373BF77FDFB04FECEB727A8CA58578A6B.png)
 
 
 
