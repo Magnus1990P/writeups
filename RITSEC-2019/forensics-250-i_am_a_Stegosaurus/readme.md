@@ -29,3 +29,6 @@ Difficult method
 5. Scan image with "pngcheck". Hopefully less errors
 6. Open image in SXIV and read the code, "sxiv stegosaurus.png"
    - Image "Capture2.PNG"
+
+
+![Alt text](./stegosaurus.png "a title")

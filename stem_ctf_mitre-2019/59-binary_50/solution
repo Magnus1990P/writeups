@@ -1,6 +1,0 @@
-The solution is simple, just rund strings on the binary and grep for the stat of the flag.
-
-```bash
-$ strings challenge | grep MCA
-MCA{y3ah_sur3_here_y0u_g0}
-```

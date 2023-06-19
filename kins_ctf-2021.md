@@ -1,42 +1,34 @@
 ﻿# KINS CTF 2021
 
 ## Blandet drops
-
-
-
-## Nettverkstrafikk
-### Password
-*Avdekk passordet til bobby.*
-
+### Nettverkstrafikk
+#### Password
+*Avdekk passordet til bobby.*  
 This is FTP traffic, find the logon request requesting the username followed by the password request and response in cleartext.
 
-### Filproblemer
-*Booby logger inn og laster ned et bilde. Bildet inneholder flagget. Klarer du å finne det i capture-filen?*
-
+#### Filproblemer
+*Booby logger inn og laster ned et bilde. Bildet inneholder flagget. Klarer du å finne det i capture-filen?*  
 Find the image transferred in the the FTP-data stream, Either by searching for the file header, "FFD8" or ".jpg". Select "Follow TCP Stream" and ave the data as RAW data with a `".jpg"` file extensionm
 
-### Zip
-*Som du ser av capture-filen, så laster Bobby ned en zip-fil. Flagget ligger i zip-filen.*
-
+#### Zip
+*Som du ser av capture-filen, så laster Bobby ned en zip-fil. Flagget ligger i zip-filen.*  
 Two staged task.
 1. Same as above, but for a ZIP archive and save it as "zippy.zip".
 1. The archive is password encrypted, get the password hash from zip2john then use john-the-ripper and a password list to crack the cipher.
 
 
-### WiFI
-*Du dumper trafikk fra et trådløst nettverk. Avdekk passordet til det trådløse nettverket.*
-
+#### WiFI
+*Du dumper trafikk fra et trådløst nettverk. Avdekk passordet til det trådløse nettverket.*  
 This is a two stage task
 1. Get the BSSID with airodump-ng, as it lists all the BSSIDs found int he capture file.  Find the BSSID you wish to crack, the file only contained one BSSID.
 1. Use aircrack-ng along with a wordlist to crack the password
 
 
 
-## Kryptografi
+### Kryptografi
 
-### RSA 1
-*RSA er asymmetrisk krypteringsalgoritme som har tatt verden med storm. Men den har også noen svakheter. En av svakhetene handler om at hvis n kan faktoreres, så kan p og q avdekkes, og dermed kan vi finne d. Klarer du å avdekke flagget som er kryptert i fila?*
-
+#### RSA 1
+*RSA er asymmetrisk krypteringsalgoritme som har tatt verden med storm. Men den har også noen svakheter. En av svakhetene handler om at hvis n kan faktoreres, så kan p og q avdekkes, og dermed kan vi finne d. Klarer du å avdekke flagget som er kryptert i fila?*  
 Solution is based on the guide at hxxps://www.quaxio[.]com/exploring_three_weaknesses_in_rsa/
 ```
 n: 14303657909586312103
@@ -76,7 +68,7 @@ for cc in c:
 print(ptext)
 ```
 
-### RSA 2
+#### RSA 2
 *Her er en annen RSA-utfordring. I denne oppgaven får du bare den krypterte teksten og eksponenten. Merk at eksponenten er veldig lav. Klarer du å avdekke flagget?*
 
 - Given that **e** is extremely low, eg 3 ro 7, cryptogram is reversible as `C = M^e => M = M = cuberoot(C)` as e = 3
@@ -88,14 +80,11 @@ e = 3
 hString = hex( gmpy2.iroot(ct, e)[0] )
 ```
 
-- Flag: **FLAG{RSA_or_!_that_is_the_1000000_question}**
+**Flag:** `FLAG{RSA_or_!_that_is_the_1000000_question}`
 
 
-## Sårbare tjenester
-### Jenny
-
-
-### Tom & Jerry
+### Sårbare tjenester
+#### Tom & Jerry
 1. Using a dictionary attack on default passwords for Apache tomcat we git the management-gui username and password "tomcat/tomcat".
 1. Then we could upload a WAR file to the tomcat which runs under the process of tomcat.
 1. Uploading a malicious war file with a web-shell, gives the ability to issue commands
@@ -103,56 +92,48 @@ hString = hex( gmpy2.iroot(ct, e)[0] )
 1. `cat ./conf/FLAG.txt` gives the flag.
 
 
-### Eskimo 1
-
-
-### Eskimo 2
-
-
-## Multimedia
-### Error
+### Multimedia
+#### Error
 The high pitched audio sounded like morse code.
-Lowering the sampling rate in Audacity, basically extenTranslating the Audio morse code signal yields the following morse code string, `..-. .. ... -.- . -.- .- -.- . .-. `, which translates into `FISKEKAKER`
-
+Lowering the sampling rate in Audacity, basically extenTranslating the Audio morse code signal yields the following morse code string, `..-. .. ... -.- . -.- .- -.- . .-. `, which translates into `FISKEKAKER`  
 ![alt text](./static/E67D77A0D600C8392BEE8AFF2829E2F373BF77FDFB04FECEB727A8CA58578A6B.png)
 
 
 
-## Hasher
-### MS-CHAPv2
+### Hasher
+#### MS-CHAPv2
 Crack it using "assless-chaps" and the HaveIBeenPwnd NTLM password list.
 
-### NTLM1
+#### NTLM1
 *Avdekk passordet til denne ntlm hashen: `40F4995D57BEE67D3ADF04960D85055B` Oppgi svaret i formatet: FLAG{passord}*
 
 Kommando: hashcat.exe -m 1000 -a 0 40F4995D57BEE67D3ADF04960D85055B ..\rockyou.txt -r rules\rockyou-30000.rule
 
 Fant riktig passord etter ca 72% av searchspace: adventistlui0716593!
 
-### NTLM2
+#### NTLM2
 *Avdekk passordet til denne ntlm hashen: `E8091CA6AEB7B308FC1605B52B9A4218` Oppgi svaret i formatet: FLAG{passord}*
 
 Checking online services yielded the answer, as `maquinadegerra` on "hxxps://hashes[.]com/"
 
 
-### DCC2
-*Du henter ut følgende cached credentials fra en domenemaskin.*
-
-`$DCC2$10240#nifsenils#faa175fd4dcfc8cd2d0760e2e9e295bf`
-
+#### DCC2
+*Du henter ut følgende cached credentials fra en domenemaskin.*  
+`$DCC2$10240#nifsenils#faa175fd4dcfc8cd2d0760e2e9e295bf`  
 *Som du vet tar det laaang tid å cracke cached credentials, men heldigvis vet du litt om hvilke mønster som denne brukeren vanligvis bruker for å lage passord. Kanskje du kan redusere entropien ved å være litt smart, og dermed avdekke passordet?*
-- **Toyota7H1h0k1(**
-- **Subaru2E0f0k1)**
-- **Nissan9Z1h1k1(**
-- **Subaru0E0f0k1)**
-- **Toyota2J1h0k0(**
-- **Toyota7K1f0k1(**
-- **Subaru3N0h1k0(**
-- **Nissan8M1g1k1)**
-- **Toyota2D0g0k0)**
-- **Subaru4Q1f1k1(**
-- **Toyota6D0h1k0)**:
-
+```
+Toyota7H1h0k1(
+Subaru2E0f0k1)
+Nissan9Z1h1k1(
+Subaru0E0f0k1)
+Toyota2J1h0k0(
+Toyota7K1f0k1(
+Subaru3N0h1k0(
+Nissan8M1g1k1)
+Toyota2D0g0k0)
+Subaru4Q1f1k1(
+Toyota6D0h1k0)
+```
 
 1. Extrapolate the password pattern from the above
 `(Toyota|Subaru|Nissan)[0-9][A-Z][01][hfg][01]k[01][)(]`
@@ -173,26 +154,3 @@ The PDF contained an image of a bunch of onions with a hex string superimposed o
 ```
 The string turns into: `jlvhvagkcikyubzqrrkiuxl2q4i5rntlq3ya2ctbxsr5yfob7kpb2jqd/index2.html`, which is a hash of an Onion site and the context path of its landing page.
 `jlvhvagkcikyubzqrrkiuxl2q4i5rntlq3ya2ctbxsr5yfob7kpb2jqd[.]onion[/]index2.html`.
-
-
-### !Encryption
-
-
-### H4ck3r
-
-
-### BBQ
-
-
-
-## GDPR
-### E-Poster til besvær
-
-
-### Skytjenster
-
-
-### Lokaliseringsdata 
-
-
-### Samtykke

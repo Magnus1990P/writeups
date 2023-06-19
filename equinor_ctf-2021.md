@@ -28,7 +28,6 @@ Split the document into a list of number,character pairs and grab all numbers wh
 Crack it by factorizing n and decrypt the cryptogram.
 
 
-
 ## Forensics
 ### Forensics/sysadmin1
 Two part problem.  The partition table is not starting at 0, the partition is bitlocker encrypted with a password list.
@@ -39,13 +38,3 @@ Two part problem.  The partition table is not starting at 0, the partition is bi
 1. When it is unlocked it is "mounted" to an intermediary location
 1. Mount the intermediary location to a third location
 1. Find the flag.
-
-
-## ICS
-Packet dump tasks, the data is in plaiontext and well documented.
-
-## Misc
-
-## Ransomfail
-
-## Web
