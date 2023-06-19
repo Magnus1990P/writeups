@@ -24,5 +24,4 @@ for group in groups:
                     break
             if exist:
                 tot+=1
-
 print(tot)

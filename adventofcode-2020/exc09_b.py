@@ -36,7 +36,4 @@ for d in range(pal, len(data)):
                     break
                 else:
                     j += 1
-
-
-
         break

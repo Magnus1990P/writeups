@@ -69,6 +69,4 @@ Code snippet from Ghidra.
                              LAB_00454144                                    XREF[1]:     00454136(j)  
         00454144 b800 4245 00    MOV        param_1=>s_Wrong_Password!_00454200,s_Wrong_Pa   = "Wrong Password!"
         00454149 e8e2 38fd ff    CALL       FUN_00427a30                                     undefined FUN_00427a30(undefined
-                 
-
 ```
